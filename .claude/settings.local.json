@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -:*)",
+      "Bash(pip3 install:*)",
+      "Bash(PYTHONPATH=/tmp/pdflibs2 python3 -c \":*)",
+      "Bash(cd /tmp)",
+      "Bash(python3 -c \":*)",
+      "Bash(where python3:*)",
+      "Bash(python3 -m pip install \"pdfminer.six\" -q)",
+      "Bash(python3 -c \"from pdfminer.high_level import extract_text; print\\(extract_text\\(r''''C:/Users/esatc/Downloads/Black Modern Restaurant Menu-2.pdf''''\\)\\)\")"
+    ]
+  }
+}

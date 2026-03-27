@@ -6,439 +6,9 @@
   <title>Liva Food</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet" />
 
-  <style>
-
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-    :root {
-      --bg    : #F2EDE1;   
-      --white : #FFFFFF;
-      --dark  : #1A1A1A;
-      --red   : #7A1C1C;
-      --gold  : #B8943A;
-      --muted : #78726A;
-      --card  : #FFFFFF;
-    }
-
-    html { scroll-behavior:smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);        
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    img { display:block; }
-    a   { text-decoration:none; }
-
-
-    .c {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 3rem;
-    }
-
-    nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 900;
-      backdrop-filter: blur(16px);
-      background: rgba(242, 237, 225, 0.88);
-    }
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1.4rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo-w { line-height:1; }
-    .logo-main {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.65rem;
-      color: var(--dark);
-    }
-    .logo-sub {
-      display: block;
-      font-size: 0.48rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 3px;
-    }
-    nav ul { display:flex; gap:2.5rem; list-style:none; }
-    nav ul a {
-      font-size: 0.82rem;
-      color: var(--dark);
-      letter-spacing: 0.04em;
-      transition: color .2s;
-    }
-    nav ul a:hover { color: var(--red); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .72rem 1.75rem;
-      border-radius: 50px;
-      font-family: 'Inter', sans-serif;
-      font-size: .82rem;
-      font-weight: 500;
-      cursor: pointer;
-      border: none;
-      transition: all .22s;
-    }
-    .btn-red     { background:var(--red); color:#fff; }
-    .btn-red:hover { background:#5c1515; transform:translateY(-1px); }
-    .btn-gold    { background:var(--gold); color:#fff; }
-    .btn-gold:hover { background:#9a7a2e; }
-    .btn-outline {
-      border: 1.5px solid rgba(26,26,26,.28);
-      color: var(--dark);
-      background: transparent;
-    }
-    .btn-outline:hover { background:var(--dark); color:#fff; border-color:var(--dark); }
-
-    .eyebrow {
-      font-size: .7rem;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .9rem;
-    }
-    .section-h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 2.9rem);
-      line-height: 1.18;
-    }
-
-    #path-canvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      pointer-events: none;
-      z-index: 800;
-      overflow: visible;
-    }
-    .page { position: relative; }
-    section { position: relative; }
-
-    #hero {
-      min-height: 100vh;
-      padding: 9rem 0 5rem;
-    }
-    .hero-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 3rem;
-    }
-    .hero-eyebrow {
-      font-size: .7rem;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.6rem;
-    }
-    .hero-h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 5vw, 4.6rem);
-      line-height: 1.05;
-      margin-bottom: .7rem;
-    }
-    .hero-h1 em { font-style:italic; color:var(--red); }
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.45rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-    .hero-sub {
-      font-size: .9rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 380px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
-
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .hero-blob {
-      background: none;
-      box-shadow: none;
-      animation: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-blob img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      display: block;
-    }
-
-    .hero-badge {
-      position: absolute;
-      bottom: 18px; right: 0;
-      width: 108px; height: 108px;
-      border-radius: 50%;
-      background: var(--white);
-      box-shadow: 0 8px 30px rgba(0,0,0,.11);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .hero-badge-s {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--red);
-      line-height: 1;
-    }
-    .hero-badge-l {
-      font-size: .52rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .3rem;
-    }
-
-    .social-side {
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .7rem;
-    }
-    .sl { width:1px; height:55px; background:var(--muted); opacity:.22; }
-    .social-side a {
-      writing-mode: vertical-rl;
-      font-size: .62rem;
-      letter-spacing: .14em;
-      color: var(--muted);
-      transition: color .2s;
-    }
-    .social-side a:hover { color:var(--red); }
-
-    #about {
-      padding: 8rem 0;
-      text-align: center;
-    }
-    .about-body {
-      max-width: 540px;
-      margin: 1.4rem auto 4.5rem;
-      color: var(--muted);
-      line-height: 1.85;
-      font-size: .93rem;
-    }
-    .about-cols {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 3rem;
-      margin-bottom: 3.5rem;
-    }
-    .about-col img {
-      width: 190px; height: 190px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1.1rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,.09);
-      outline: 1px solid rgba(0,0,0,0);
-    }
-    .about-col h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      margin-bottom: .3rem;
-    }
-    .about-col p { font-size:.8rem; color:var(--muted); }
-    .about-btns { display:flex; justify-content:center; gap:1rem; }
-
-    .oval-divider {
-      width: 520px;
-      height: 2px;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 50%;
-      margin: 0 auto 4rem;
-    }
-
-    #menu { padding: 8rem 0; }
-    .menu-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 4rem;
-    }
-    .big-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      line-height: 1.05;
-    }
-    .big-title em { font-style:italic; color:var(--red); }
-
-    .menu-row1 {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 1.4rem;
-      margin-bottom: 1.4rem;
-    }
-    .menu-row2 {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 1.4rem;
-    }
-    .mcard {
-      background: var(--card);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .mcard:hover { transform:translateY(-7px); box-shadow:0 20px 50px rgba(0,0,0,.09); }
-    .mcard img { width:100%; height:200px; object-fit:cover; }
-    .mcard-info { padding:1.1rem 1.25rem 1.3rem; }
-    .mcard-info h3 {
-      font-size:.73rem; font-weight:700;
-      text-transform:uppercase; letter-spacing:.1em;
-      color:var(--red); margin-bottom:.3rem;
-    }
-    .mcard-info p { font-size:.8rem; color:var(--muted); }
-    .menu-row2 .mcard img { height:250px; }
-
-    #catering { padding: 8rem 0; }
-    .catering-card {
-      background: var(--dark);
-      border-radius: 28px;
-      padding: 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .cat-text .eyebrow { color:var(--gold); }
-    .cat-text h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem,3.5vw,3rem);
-      line-height: 1.2;
-      color: #fff;
-      margin: 1rem 0 1.4rem;
-    }
-    .cat-text p { color:rgba(255,255,255,.52); line-height:1.8; font-size:.93rem; margin-bottom:2rem; }
-
-    .cat-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 220px 170px;
-      gap: 1rem;
-    }
-    .cat-photos img { width:100%; height:100%; object-fit:cover; border-radius:14px; }
-    .cat-photos img.wide { grid-column:span 2; }
-
-
-    #contact { padding: 8rem 0; }
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-    .contact-h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem,3.5vw,2.8rem);
-      line-height: 1.2;
-      margin: .8rem 0 2.5rem;
-    }
-    .crow {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid rgba(0,0,0,.07);
-    }
-    .crow:first-of-type { border-top:1px solid rgba(0,0,0,.07); }
-    .cicon {
-      width:38px; height:38px; border-radius:50%;
-      background:var(--red); color:#fff;
-      display:flex; align-items:center; justify-content:center;
-      font-size:.9rem; flex-shrink:0;
-    }
-    .crow strong { font-size:.78rem; font-weight:600; display:block; margin-bottom:.3rem; }
-    .crow p { font-size:.84rem; color:var(--muted); line-height:1.55; }
-
-    .hours-card {
-      background: var(--card);
-      border-radius: 24px;
-      padding: 2.5rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,.06);
-    }
-    .hours-card h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.3rem; margin-bottom:2rem;
-    }
-    .hrow {
-      display:flex; justify-content:space-between;
-      font-size:.87rem; padding:.9rem 0;
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .hrow:last-child { border-bottom:none; }
-    .closed { color:var(--red); font-weight:500; }
-
-
-    footer {
-      background: #111;
-      padding: 2rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: .78rem;
-      color: rgba(255,255,255,.35);
-    }
-    .footer-logo {
-      font-family:'Playfair Display',serif;
-      font-style:italic; font-size:1.4rem; color:#fff;
-    }
-    .footer-links { display:flex; gap:1.5rem; }
-    .footer-links a { color:rgba(255,255,255,.35); transition:color .2s; }
-    .footer-links a:hover { color:#fff; }
-
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
-    @media (max-width:960px) {
-      nav ul { display:none; }
-      .nav-inner { padding:1.2rem 1.5rem; }
-      .c, .hero-inner, .contact-inner { padding-left:1.5rem; padding-right:1.5rem; }
-      .hero-inner { grid-template-columns:1fr; }
-      .hero-right, .social-side { display:none; }
-      #hero { padding-top:7rem; }
-      .about-cols { grid-template-columns:1fr; gap:2rem; }
-      .menu-row1, .menu-row2 { grid-template-columns:1fr; }
-      .catering-card { grid-template-columns:1fr; padding:3rem 2rem; }
-      .contact-inner { grid-template-columns:1fr; gap:3rem; }
-      footer { flex-direction:column; gap:1rem; text-align:center; }
-    }
-  </style>
 </head>
 <body>
 
@@ -446,16 +16,14 @@
 <nav>
   <div class="nav-inner">
     <div class="logo-w">
-      <span class="logo-main">Liva</span>
-      <span class="logo-sub">Food</span>
+      <img src="/images/logo1.svg" alt="Liva Food" style="height:104px;width:auto;" />
     </div>
     <ul>
       <li><a href="#about">About Us</a></li>
       <li><a href="menu.html">Menu</a></li>
-      <li><a href="#catering">Catering</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html">Catering</a></li>
     </ul>
-    <a href="https://liva-food-nl.sides-shop.com/articles" target="_blank" class="btn btn-red">Order Now &rarr;</a>
+    <a href="https://liva-food-nl.sides-shop.com/articles" target="_blank" class="btn btn-red">Order via Web &rarr;</a>
   </div>
 </nav>
 
@@ -473,7 +41,7 @@
         <p class="hero-sub">From intimate gatherings to grand events, we bring authentic Middle Eastern flavors to your table — every single time.</p>
         <div class="hero-btns">
           <a href="menu.html" class="btn btn-red">Explore Menu &rarr;</a>
-          <a href="#catering" class="btn btn-outline">Order Catering</a>
+          <a href="contact.html" class="btn btn-outline">Order Catering</a>
         </div>
       </div>
 
@@ -496,39 +64,6 @@
     </div>
   </section>
 
-  <!-- ── ABOUT ────────────────────────────── -->
-  <section id="about">
-    <div class="c">
-      <p class="eyebrow">Our Story</p>
-      <h2 class="section-h2">Food that brings people together.</h2>
-      <p class="about-body">
-        Liva Food is born from a love of authentic Middle Eastern and Mediterranean flavors. From daily specials to full event catering, every dish is prepared with care and crafted to perfection — united by one idea: to make people feel welcomed.
-      </p>
-      <div class="oval-divider"></div>
-      <div class="about-cols">
-        <div class="about-col">
-          <img src="/images/wetransfer_dsc05024-jpg_2025-10-02_0805/Cig Kofte Portion2.jpg" alt="Baked with care" />
-          <h4>Baked with care</h4>
-          <p>served warm, every time</p>
-        </div>
-        <div class="about-col">
-          <img src="images/wetransfer_dsc05024-jpg_2025-10-02_0805/Adana Lavash Wrap1.jpg" alt="Full catering tables" />
-          <h4>From snacks to full tables</h4>
-          <p>catering any occasion</p>
-        </div>
-        <div class="about-col">
-          <img src="images/wetransfer_dsc05024-jpg_2025-10-02_0805/Borek with Feta3.jpg" alt="Perfect for your moment" />
-          <h4>Perfect for your moment</h4>
-          <p>weddings, events &amp; more</p>
-        </div>
-      </div>
-      <div class="about-btns">
-        <a href="menu.html" class="btn btn-gold">Menu</a>
-        <a href="#catering" class="btn btn-outline">Order Catering</a>
-        <a href="contact.html" class="btn btn-red">Book Us</a>
-      </div>
-    </div>
-  </section>
 
   <!-- ── MENU ─────────────────────────────── -->
   <section id="menu">
@@ -542,7 +77,7 @@
       </div>
       <div class="menu-row1">
         <div class="mcard">
-          <img src="/images/Lev Group Photo/iclikofte.jpeg" alt="Çiğköfte Portion" />
+          <img src="/images/Lev Group Photo/iclikofte.jpeg" alt="Çiğköfte Portion" style="object-position:center top;" />
           <div class="mcard-info"><h3>Çiğköfte Portion</h3><p>Bulgur, chili flakes &amp; spices — €10.00</p></div>
         </div>
         <div class="mcard">
@@ -567,8 +102,8 @@
     </div>
   </section>
 
+
   <!-- ── CATERING ──────────────────────────── -->
-   
   <section id="catering">
     <div class="c">
       <div class="catering-card">
@@ -579,15 +114,15 @@
           <a href="contact.html" class="btn btn-gold">Book Us &rarr;</a>
         </div>
         <div class="cat-photos">
-          <img class="wide" src="https://picsum.photos/seed/301/900/440" alt="Catering event" />
-          <img src="https://picsum.photos/seed/302/440/340" alt="Wedding catering" />
-          <img src="https://picsum.photos/seed/303/440/340" alt="Dinner setup" />
+          <img class="wide" src="images/wetransfer_dsc05024-jpg_2025-10-02_0805/Adana Lavash Wrap1.jpg" alt="Catering event" />
+          <img src="images/wetransfer_dsc05024-jpg_2025-10-02_0805/Borek with Feta2.jpg" alt="Börek" />
+          <img src="images/wetransfer_dsc05024-jpg_2025-10-02_0805/Lahmacun5.jpg" alt="Lahmacun" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CONTACT ───────────────────────────── -->
+  <!-- ── CONTACT ──────────────────────────── -->
   <section id="contact">
     <div class="c">
       <div class="contact-inner">
@@ -607,18 +142,21 @@
             <div><strong>Email</strong><p>info@livafood.nl</p></div>
           </div>
         </div>
-        <div class="hours-card">
-          <h3>Opening Hours</h3>
-          <div class="hrow"><span>Sunday &ndash; Monday</span><span class="closed">Closed</span></div>
-          <div class="hrow"><span>Tuesday &ndash; Saturday</span><span>3 PM &ndash; 8 PM</span></div>
+        <div>
+          <div class="hours-card">
+            <h3>Opening Hours</h3>
+            <div class="hrow"><span>Sunday &ndash; Monday</span><span class="closed">Closed</span></div>
+            <div class="hrow"><span>Tuesday &ndash; Saturday</span><span>3 PM &ndash; 8 PM</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+
   <!-- FOOTER ──────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Liva <span style="font-family:Inter,sans-serif;font-style:normal;font-size:.5rem;letter-spacing:.3em">FOOD</span></span>
+    <img src="/images/logo1.svg" alt="Liva Food" style="height:44px;width:auto;filter:brightness(0) invert(1);" />
     <span>&copy; 2025 Liva Food &mdash; All rights reserved.</span>
     <div class="footer-links">
       <a href="#">Instagram</a>
