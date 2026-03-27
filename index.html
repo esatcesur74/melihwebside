@@ -23,14 +23,23 @@
       <li><a href="menu.html">Menu</a></li>
       <li><a href="contact.html">Catering</a></li>
     </ul>
+    <a href="https://liva-food-nl.sides-shop.com/articles" target="_blank" class="btn btn-red nav-order-btn">Order via Web &rarr;</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="contact.html">Catering</a></li>
+    </ul>
     <a href="https://liva-food-nl.sides-shop.com/articles" target="_blank" class="btn btn-red">Order via Web &rarr;</a>
   </div>
 </nav>
 
 <div class="page" id="page">
 
-  <!-- SVG PATH -->
-  <svg id="path-canvas" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
 
   <section id="hero">
     <div class="hero-inner">
@@ -43,6 +52,10 @@
           <a href="menu.html" class="btn btn-red">Explore Menu &rarr;</a>
           <a href="contact.html" class="btn btn-outline">Order Catering</a>
         </div>
+      </div>
+
+      <div class="hero-mobile-img">
+        <img src="images/Tantuni3-Photoroom.webp" alt="Liva Food" />
       </div>
 
       <div class="hero-right">
@@ -163,152 +176,24 @@
 
 </div>
 
-<!-- ══════════════════════════════════════════
-     SVG PATH  +  ARABESQUE ROSETTE MOTIFS
-══════════════════════════════════════════ -->
+
 <script>
-(function () {
-  const NS = 'http://www.w3.org/2000/svg';
-
-  /* ── SVG element helper ────────────────── */
-  function el(tag, attrs) {
-    const n = document.createElementNS(NS, tag);
-    if (attrs) Object.entries(attrs).forEach(([k,v]) => n.setAttribute(k, String(v)));
-    return n;
-  }
-
-  /* ── Build arabesque rosette motif ─────── */
-  /*    8 overlapping elliptical petals        */
-  /*    + double ring + center circle          */
-  function makeRosette(cx, cy, r, color) {
-    const g = el('g');
-
-    /* Outer faint ring */
-    g.appendChild(el('circle', {
-      cx, cy, r: r * 2.4,
-      fill:'none', stroke:color, 'stroke-width':'0.5', opacity:'0.6'
-    }));
-
-    /* Inner ring */
-    g.appendChild(el('circle', {
-      cx, cy, r: r * 1.4,
-      fill:'none', stroke:color, 'stroke-width':'0.5'
-    }));
-
-    /* 8 petals */
-    for (let i = 0; i < 8; i++) {
-      const angle = i * 45;
-      /* Petal: ellipse centered at (cx, cy - r*0.72), long axis vertical */
-      g.appendChild(el('ellipse', {
-        cx: cx,
-        cy: cy - r * 0.72,
-        rx: r * 0.22,
-        ry: r * 0.58,
-        fill: 'none',
-        stroke: color,
-        'stroke-width': '0.75',
-        transform: `rotate(${angle},${cx},${cy})`
-      }));
-    }
-
-    /* 8 small accent dots at petal tips */
-    for (let i = 0; i < 8; i++) {
-      const a = (i * 45 - 90) * Math.PI / 180;
-      const dx = cx + Math.cos(a) * r * 1.25;
-      const dy = cy + Math.sin(a) * r * 1.25;
-      g.appendChild(el('circle', {
-        cx: dx, cy: dy, r: r * 0.07,
-        fill: color
-      }));
-    }
-
-    /* Center dot */
-    g.appendChild(el('circle', {
-      cx, cy, r: r * 0.14, fill: color
-    }));
-
-    return g;
-  }
-
-  /* ── Main init ────────────────────────── */
-  function init() {
-    const svg  = document.getElementById('path-canvas');
-    const page = document.getElementById('page');
-    const W    = page.offsetWidth;
-    const H    = page.scrollHeight;
-
-    svg.setAttribute('width',   W);
-    svg.setAttribute('height',  H);
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    svg.innerHTML = '';
-
-    const COLOR = '#B8943A';
-
-    /* S-curve that stays in the side margins
-       so it peeks out beside the centered content */
-    const d = [
-      `M ${W*0.84} 80`,
-      `C ${W*0.84} ${H*0.09}, ${W*0.10} ${H*0.16}, ${W*0.13} ${H*0.27}`,
-      `C ${W*0.17} ${H*0.38}, ${W*0.87} ${H*0.43}, ${W*0.83} ${H*0.53}`,
-      `C ${W*0.79} ${H*0.63}, ${W*0.11} ${H*0.68}, ${W*0.14} ${H*0.79}`,
-      `C ${W*0.17} ${H*0.89}, ${W*0.82} ${H*0.93}, ${W*0.52} ${H*0.97}`
-    ].join(' ');
-
-    const path = el('path', {
-      d,
-      fill          : 'none',
-      stroke        : COLOR,
-      'stroke-width': '1.5',
-      opacity       : '0.5'
+(function(){
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
     });
-    svg.appendChild(path);
-
-    const len = path.getTotalLength();
-    path.style.strokeDasharray  = len;
-    path.style.strokeDashoffset = len;
-
-    /* Place rosettes at 5 points along path */
-    const fracs  = [0.10, 0.27, 0.50, 0.72, 0.90];
-    const motifs = fracs.map(f => {
-      const pt = path.getPointAtLength(len * f);
-      const g  = makeRosette(pt.x, pt.y, 18, COLOR);
-      g.style.opacity    = '0';
-      g.style.transition = 'opacity .5s ease';
-      svg.appendChild(g);
-      return { g, f };
-    });
-
-    /* Scroll-driven draw */
-    let ticking = false;
-    function update() {
-      const p = Math.min(window.scrollY /
-        (document.documentElement.scrollHeight - window.innerHeight), 1);
-
-      path.style.strokeDashoffset = len * (1 - p);
-
-      motifs.forEach(({ g, f }) => {
-        g.style.opacity = p >= f - 0.04
-          ? String(Math.min((p - f + 0.04) / 0.08, 1) * 0.55)
-          : '0';
-      });
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-
-    update();
-  }
-
-  window.addEventListener('load', () => {
-    init();
-    let t;
-    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(init, 200); });
   });
 })();
 </script>
-
 </body>
 </html>

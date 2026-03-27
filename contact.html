@@ -16,14 +16,25 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo-w">
-      <img src="images/logo1.webp" alt="Liva Food" style="height:104px;width:auto;" />
+      <img src="images/logo1.svg" alt="Liva Food" style="height:104px;width:auto;" />
     </a>
     <ul>
       <li><a href="index.html#about">About Us</a></li>
       <li><a href="menu.html">Menu</a></li>
       <li><a href="contact.html">Catering</a></li>
     </ul>
-    <a href="#form" class="btn btn-red">Book Now &rarr;</a>
+    <a href="#form" class="btn btn-red nav-order-btn">Book Now &rarr;</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="contact.html">Catering</a></li>
+    </ul>
+    <a href="https://liva-food-nl.sides-shop.com/articles" target="_blank" class="btn btn-red">Order via Web &rarr;</a>
   </div>
 </nav>
 
@@ -258,7 +269,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="images/logo1.webp" alt="Liva Food" style="height:44px;width:auto;filter:brightness(0) invert(1);" />
+  <img src="images/logo1.svg" alt="Liva Food" style="height:44px;width:auto;filter:brightness(0) invert(1);" />
   <span>&copy; 2025 Liva Food &mdash; All rights reserved.</span>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -278,5 +289,23 @@
   }
 </script>
 
+<script>
+(function(){
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    });
+  });
+})();
+</script>
 </body>
 </html>
