@@ -60,7 +60,7 @@ nav {
 .nav-inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.4rem 3rem;
+  padding: 0.55rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,7 +69,7 @@ nav {
 .logo-main {
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 1.65rem;
+  font-size: 1.35rem;
   color: var(--dark);
 }
 .logo-sub {
@@ -784,7 +784,7 @@ input[type="range"]:focus { box-shadow: none; border: none; }
   nav ul { display:none; }
   .nav-order-btn { display:none; }
   .hamburger { display:flex; }
-  .nav-inner { padding:1.2rem 1.5rem; }
+  .nav-inner { padding:0.55rem 1.5rem; }
   .c, .hero-inner { padding-left:1.5rem; padding-right:1.5rem; }
   .hero-inner { grid-template-columns:1fr; }
   .hero-right, .social-side { display:none; }
