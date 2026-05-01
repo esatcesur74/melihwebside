@@ -373,6 +373,9 @@ section { position: relative; }
   border-radius: 20px;
   overflow: hidden;
   transition: transform .3s, box-shadow .3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 .mcard:hover { transform:translateY(-7px); box-shadow:0 20px 50px rgba(0,0,0,.09); }
 .mcard img { width:100%; height:200px; object-fit:cover; }
@@ -692,8 +695,8 @@ input[type="range"]:focus { box-shadow: none; border: none; }
   padding: 8rem 3rem 5rem;
 }
 .menu-header {
-  text-align: center; margin-bottom: 4rem;
-  padding-bottom: 3rem; border-bottom: 1px solid rgba(0,0,0,.1);
+  text-align: center; margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
   position: relative;
 }
 .menu-header .eyebrow { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
@@ -774,6 +777,9 @@ input[type="range"]:focus { box-shadow: none; border: none; }
 }
 .mfoot-info { font-size: .78rem; color: var(--muted); text-align: center; line-height: 1.6; }
 .dietary-key { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.dietary-key-inline { justify-content: center; padding: 0.5rem 2rem 0; margin-top: -0.5rem; }
+.dietary-key-inline .dk { font-size: .82rem; font-weight: 600; color: var(--dark); }
+.dietary-key-inline .dk-dot { width: 12px; height: 12px; }
 .dk { display: flex; align-items: center; gap: .3rem; font-size: .7rem; color: var(--muted); }
 .dk-dot { width: 10px; height: 10px; border-radius: 2px; }
 
@@ -790,17 +796,17 @@ input[type="range"]:focus { box-shadow: none; border: none; }
   .hero-right, .social-side { display:none; }
   .hero-mobile-img { display:block; width:100%; margin-top:2rem; border-radius:1.2rem; overflow:hidden; }
   .hero-mobile-img img { width:100%; height:280px; object-fit:cover; object-position:center; }
-  #hero { padding-top:7rem; }
+  #hero { padding-top:9rem; }
   .about-cols { grid-template-columns:1fr; gap:2rem; }
   .menu-row1, .menu-row2 { grid-template-columns:1fr; }
   .catering-card { grid-template-columns:1fr; padding:3rem 2rem; }
   .contact-inner { grid-template-columns:1fr; gap:3rem; padding-left:1.5rem; padding-right:1.5rem; }
-  .contact-page { padding:7rem 1.5rem 4rem; }
+  .contact-page { padding:9rem 1.5rem 4rem; }
   .contact-grid { grid-template-columns:1fr; gap:3rem; }
   .form-row { grid-template-columns:1fr; }
   .checkbox-grid { grid-template-columns:1fr 1fr; }
   .steps-grid { grid-template-columns:1fr 1fr; }
-  .menu-page { padding:7rem 1.5rem 4rem; }
+  .menu-page { padding:9rem 1.5rem 4rem; }
   .menu-grid { grid-template-columns:1fr; gap:0; }
   .catering-banner { grid-template-columns:1fr; padding:2.5rem 2rem; }
   .menu-foot { flex-direction:column; text-align:center; }
