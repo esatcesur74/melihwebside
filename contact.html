@@ -67,7 +67,12 @@
     <div>
       <p class="form-title">Tell us about<br>your <em>event.</em></p>
 
-      <form action="#" method="post">
+      <form action="https://api.web3forms.com/submit" method="post">
+
+        <input type="hidden" name="access_key" value="cc2c8e00-23b9-4c35-bf26-fa22f53d5d58" />
+        <input type="hidden" name="subject" value="Yeni Catering Talebi — Liva Food" />
+        <input type="hidden" name="from_name" value="Liva Food Website" />
+        <input type="checkbox" name="botcheck" style="display:none;" />
 
         <!-- Name + Email -->
         <div class="form-row">
@@ -166,12 +171,20 @@
         <!-- Submit -->
         <div class="form-submit">
           <p>We'll get back to you within 24 hours with a personalised proposal.</p>
-          <button type="submit" class="btn-submit">
+          <button type="submit" class="btn-submit" id="submitBtn">
             Send Inquiry &rarr;
           </button>
         </div>
 
       </form>
+
+      <div id="formSuccess" style="display:none;margin-top:2rem;padding:1.5rem 2rem;background:rgba(184,148,58,.12);border:1px solid rgba(184,148,58,.4);border-radius:12px;text-align:center;">
+        <p style="font-size:1.1rem;font-weight:600;color:#B8943A;margin-bottom:.4rem;">Thank you! ✓</p>
+        <p style="font-size:.9rem;color:#78726A;">Your inquiry has been sent. We'll get back to you within 24 hours.</p>
+      </div>
+      <div id="formError" style="display:none;margin-top:2rem;padding:1.5rem 2rem;background:rgba(122,28,28,.1);border:1px solid rgba(122,28,28,.3);border-radius:12px;text-align:center;">
+        <p style="font-size:.9rem;color:#7A1C1C;">Something went wrong. Please try again or email us directly at <a href="mailto:info@livafood.nl">info@livafood.nl</a>.</p>
+      </div>
     </div>
 
     <!-- ── SIDEBAR ── -->
@@ -280,6 +293,35 @@
 </footer>
 
 <script>
+  /* Form AJAX submit */
+  const contactForm = document.querySelector('form[action="https://api.web3forms.com/submit"]');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const data = new FormData(contactForm);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          document.getElementById('formError').style.display = 'block';
+          btn.textContent = 'Send Inquiry →';
+          btn.disabled = false;
+        }
+      } catch {
+        document.getElementById('formError').style.display = 'block';
+        btn.textContent = 'Send Inquiry →';
+        btn.disabled = false;
+      }
+    });
+  }
+
   /* Guest slider live update */
   const slider = document.getElementById('guests');
   const val    = document.getElementById('guestVal');
