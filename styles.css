@@ -65,20 +65,36 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
-.logo-w { line-height:1; }
+.logo-w {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  line-height: 1;
+  color: var(--dark);
+  /* Keep the wordmark as live type: it stays crisp on iOS Retina displays. */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
 .logo-main {
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -.045em;
   color: var(--dark);
 }
 .logo-sub {
   display: block;
-  font-size: .48rem;
-  letter-spacing: .35em;
+  font-family: 'Inter', sans-serif;
+  font-size: .43rem;
+  line-height: 1;
+  letter-spacing: .32em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 3px;
+  margin-top: 5px;
+  padding-left: .32em;
 }
 nav ul { display:flex; gap:2.5rem; list-style:none; }
 nav ul a {
@@ -298,6 +314,10 @@ section { position: relative; }
   transition: color .2s;
 }
 .social-side a:hover { color:var(--red); }
+
+.footer-wordmark { color:#fff; }
+.footer-wordmark .logo-main { color:#fff; font-size:1.35rem; }
+.footer-wordmark .logo-sub { color:rgba(255,255,255,.55); }
 
 /* ════════════════════════════════════
    INDEX — ABOUT
@@ -576,10 +596,25 @@ input[type="range"]:focus { box-shadow: none; border: none; }
   cursor: pointer; font-size: .82rem; color: var(--dark); user-select: none;
 }
 .check-item input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: auto;
   width: 18px; height: 18px; border-radius: 5px;
   border: 1.5px solid rgba(0,0,0,.2); padding: 0;
   background: var(--white); cursor: pointer; flex-shrink: 0;
   accent-color: var(--red);
+}
+input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+  color-scheme: light;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+  filter: invert(20%) sepia(80%) saturate(500%) hue-rotate(330deg);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 .form-submit {
   display: flex; align-items: center; justify-content: space-between;

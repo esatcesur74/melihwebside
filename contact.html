@@ -16,8 +16,9 @@
 <!-- NAV ──────────────────────────────────── -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="logo-w">
-      <img src="images/logo1.svg" alt="Liva Food" style="height:104px;width:auto;" />
+    <a href="index.html" class="logo-w" aria-label="Liva Food home">
+      <span class="logo-main">Liva</span>
+      <span class="logo-sub">Food</span>
     </a>
     <ul>
       <li><a href="index.html#about">About Us</a></li>
@@ -143,19 +144,6 @@
           </div>
         </div>
 
-        <!-- Budget -->
-        <div class="field">
-          <label for="budget">Approximate Budget (per person)</label>
-          <select id="budget" name="budget">
-            <option value="" disabled selected>Select a range</option>
-            <option value="10-15">€10 – €15 per person</option>
-            <option value="15-25">€15 – €25 per person</option>
-            <option value="25-40">€25 – €40 per person</option>
-            <option value="40+">€40+ per person</option>
-            <option value="custom">Custom / Discuss with us</option>
-          </select>
-        </div>
-
         <!-- Location -->
         <div class="field">
           <label for="location">Event Location</label>
@@ -241,9 +229,9 @@
             <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             @liva.food.nl
           </a>
-          <a href="#" class="social-link" style="opacity:.5;pointer-events:none;">
+          <a href="https://www.linkedin.com/company/liva-food/" target="_blank" rel="noopener noreferrer" class="social-link">
             <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn — coming soon
+            LinkedIn
           </a>
         </div>
       </div>
@@ -283,7 +271,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="images/logo1.svg" alt="Liva Food" style="height:44px;width:auto;filter:brightness(0) invert(1);" />
+  <a href="index.html" class="logo-w footer-wordmark" aria-label="Liva Food home">
+    <span class="logo-main">Liva</span>
+    <span class="logo-sub">Food</span>
+  </a>
   <span>&copy; 2025 Liva Food &mdash; All rights reserved.</span>
   <div class="footer-links">
     <a href="index.html">Home</a>
